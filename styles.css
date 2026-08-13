@@ -1,4 +1,3 @@
-/* Reset y fuente */
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +20,6 @@ body {
     width: 100%;
 }
 
-/* Encabezado */
 header {
     text-align: left;
     padding: 20px 10px 20px;
@@ -61,7 +59,6 @@ header .subtitle {
     text-shadow: 2px 2px 0 #1b3a1b;
 }
 
-/* Secciones en grid de mi web */
 #main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -113,17 +110,18 @@ header .subtitle {
 }
 
 .seccion-contenido {
-    padding: 10px 14px 14px;
+    padding: 0 14px;
     display: none;
     overflow: hidden;
-    flex: 1;
+    flex: 0;
 }
 
 .seccion.abierta .seccion-contenido {
     display: block;
+    padding: 10px 14px 14px;
+    flex: 1;
 }
 
-/* Listas y elementos de mi web*/
 .lista-item {
     margin-top: 12px;
 }
@@ -165,7 +163,6 @@ header .subtitle {
     line-height: 1.6;
 }
 
-/* Perfil y objetivos */
 .perfil-texto, .objetivo-texto {
     font-size: 0.6rem;
     line-height: 1.8;
@@ -173,7 +170,6 @@ header .subtitle {
     padding: 4px 0;
 }
 
-/* Habilidades, conocimientos técnicos, etc, etc... */
 .lista-simple {
     display: flex;
     flex-wrap: wrap;
@@ -191,7 +187,6 @@ header .subtitle {
     letter-spacing: 0.3px;
 }
 
-/* Información adicional en pares clave-valor */
 .info-adicional p {
     font-size: 0.55rem;
     margin: 5px 0;
@@ -202,7 +197,6 @@ header .subtitle {
     color: #81c784;
 }
 
-/* Botones de contacto correo y wsp */
 .botones-contacto {
     display: flex;
     justify-content: center;
@@ -243,7 +237,6 @@ header .subtitle {
     color: #fff;
 }
 
-/* Footer */
 footer {
     text-align: center;
     border-top: 4px solid #2e7d32;
@@ -258,7 +251,6 @@ footer {
     text-shadow: 2px 2px 0 #1b3a1b;
 }
 
-/* Responsive */
 @media (max-width: 700px) {
     #main {
         grid-template-columns: 1fr;
@@ -275,6 +267,9 @@ footer {
         padding: 10px 12px;
     }
     .seccion-contenido {
+        padding: 0 12px;
+    }
+    .seccion.abierta .seccion-contenido {
         padding: 8px 12px 12px;
     }
     .btn {
