@@ -1,0 +1,113 @@
+{
+  "personal": {
+    "nombre": "HUMBERTO GARCÍA VILLAGÓMEZ",
+    "direccion": "Col. Molinos del Rey, Guadalupe, Nuevo León, C.P. 67192",
+    "telefono": "8129326403",
+    "celular": "8134675990",
+    "correo": "hgvillagomez.93@gmail.com",
+    "nss": "47119324029"
+  },
+  "perfil": "Técnico especializado en robótica, sistemas eléctricos y electromecánicos con más de 10 años de experiencia en mantenimiento preventivo y correctivo. Amplios conocimientos en integración de equipos, automatización industrial, y programación de controladores lógicos programables (PLC). Capacidad de liderazgo, trabajo en equipo y resolución de problemas bajo presión.",
+  "educacion": [
+    {
+      "titulo": "Ing. Mecánico Eléctrico",
+      "institucion": "Universidad José Vasconcelos Calderón",
+      "periodo": "2023-2026",
+      "nota": "título en trámite"
+    },
+    {
+      "titulo": "Ing. Electrónica y Automatización",
+      "institucion": "Universidad Autónoma De Nuevo León (FIME)",
+      "periodo": "2011-2013",
+      "nota": "carrera no concluida/truncada"
+    },
+    {
+      "titulo": "Profesional Técnico Bachiller en Mantenimiento a Sistemas Electrónicos",
+      "institucion": "CONALEP Lic. Raúl Rangel Frías",
+      "periodo": "2007-2010",
+      "nota": "Cédula y título disponible a solicitud"
+    }
+  ],
+  "experiencia": [
+    {
+      "empresa": "Comercializadoras Gonac",
+      "ubicacion": "Guadalupe, Nuevo León",
+      "puesto": "Supervisor de Mantenimiento",
+      "periodo": "2023 - Actualidad",
+      "descripcion": [
+        "Supervisión y coordinación del mantenimiento preventivo y correctivo de maquinaria y equipo.",
+        "Gestión de un equipo multidisciplinario de técnicos en mantenimiento, enfocado en optimizar tiempos de reparación y asegurar la eficiencia operativa.",
+        "Implementación de mejoras en procesos de mantenimiento y adquisición de nuevos equipos."
+      ]
+    },
+    {
+      "empresa": "Nemak, S.A. de C.V.",
+      "ubicacion": "Guadalupe, Nuevo León",
+      "puesto": "Técnico Robótico",
+      "periodo": "2021 - 2023",
+      "descripcion": [
+        "Responsable de mantenimiento preventivo de robots en el área de moldeo, manejando sistemas hidráulicos con presiones superiores a los 1000 PSI.",
+        "Coordinación de cuadrillas de mantenimiento (eléctricos y mecánicos) para asegurar la operatividad de los equipos.",
+        "Mantenimiento de robots ABB, KUKA y FANUC, así como manejo de FlexIO, motorreductores, y transmisiones."
+      ]
+    },
+    {
+      "empresa": "Nemak, S.A. de C.V.",
+      "ubicacion": "Guadalupe, Nuevo León",
+      "puesto": "Técnico Electrónico",
+      "periodo": "2018 - 2021",
+      "descripcion": [
+        "Desarrollo e integración de HMI en marcas como Proface y Allen‑Bradley.",
+        "Primeros acercamientos con SIEMENS y modificaciones en lógicas de programación de PLCs (PILZ, SICK, Allen‑Bradley).",
+        "Participación en el mantenimiento de la línea de producción de Ford 2.5L."
+      ]
+    },
+    {
+      "empresa": "Nemak, S.A. de C.V.",
+      "ubicacion": "Guadalupe, Nuevo León",
+      "puesto": "Técnico Eléctrico",
+      "periodo": "2013 - 2018",
+      "descripcion": [
+        "Mantenimiento correctivo en turnos rotativos a la línea de acabado de productos, desarrollando habilidades en detección y solución de fallas eléctricas.",
+        "Inicio en el área de robótica con ABB y KUKA."
+      ]
+    },
+    {
+      "empresa": "Daltile",
+      "ubicacion": "",
+      "puesto": "Técnico Electromecánico",
+      "periodo": "2010 - 2012",
+      "descripcion": [
+        "Mantenimiento preventivo y correctivo en la línea de inspección visual del departamento Large Unite.",
+        "Motivo de separación: Falta de oportunidad de crecimiento."
+      ]
+    }
+  ],
+  "programacion": {
+    "lenguaje_escalera": "PLCs Allen‑Bradley, SIEMENS, Yokogawa, IndraLogic (MTX), Fanuc.",
+    "programacion_bloques": "SICK, PILZ, Allen‑Bradley (PLC GUARD), IndraLogic (MTC).",
+    "pascal": "PLCs Fanuc, Yokogawa (CNC), Indramat, Rexord.",
+    "texto_estructurado": "PLCs IndraLogic (MTX), Robots ABB, KUKA, microcontroladores Atmel (Arduino), Microchip (Pic C compiler), ESP32 (Python, Arduino), STM32.",
+    "hmi": "Allen‑Bradley, Proface."
+  },
+  "habilidades": [
+    "Liderazgo y gestión de equipos",
+    "Proactividad y resolución de problemas",
+    "Gestión de proyectos y control de agenda",
+    "Conocimientos en contabilidad, recursos humanos y administración",
+    "Capacidad de trabajar bajo presión y en equipo"
+  ],
+  "conocimientos_tecnicos": [
+    "Manejo de sistemas operativos Windows (2003, XP, 7, 10)",
+    "Uso de herramientas de medición eléctrica (multímetro, amperímetro, medidor de aislancia)",
+    "Interpretación de planos y diagramas eléctricos",
+    "Lectura y análisis de manuales técnicos"
+  ],
+  "informacion_adicional": {
+    "ingles": "Nivel básico",
+    "hijo": "1 hijo",
+    "disponibilidad": "Disponibilidad para aprender y adaptarse a nuevos desafíos",
+    "estudios": "Actualmente cursando estudios los sábados (8am - 2pm) en Guadalupe, N.L."
+  },
+  "objetivo": "Desarrollar mis capacidades técnicas y personales cada día, buscando el crecimiento profesional y ético para aportar valor en cada proyecto en el que participe."
+}
