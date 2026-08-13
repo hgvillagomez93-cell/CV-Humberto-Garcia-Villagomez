@@ -15,13 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderizarCV(data) {
-    // Encabezado
     document.getElementById('nombre').textContent = data.personal.nombre;
 
     const main = document.getElementById('main');
     main.innerHTML = '';
 
-    // Secciones definidas
     const secciones = [
         { id: 'perfil', titulo: '🎯 Perfil Profesional', tipo: 'texto', contenido: data.perfil },
         { id: 'educacion', titulo: '📘 Educación', tipo: 'lista', items: data.educacion },
@@ -38,18 +36,21 @@ function renderizarCV(data) {
         div.className = 'seccion';
         div.id = `sec-${sec.id}`;
 
-        // Header
         const header = document.createElement('div');
         header.className = 'seccion-header';
         header.innerHTML = `
             <h2>${sec.titulo}</h2>
             <span class="icono">▼</span>
         `;
+
+        // 🔥 Lógica de acordeón: al hacer clic, cerrar todas y abrir solo esta
         header.addEventListener('click', () => {
-            div.classList.toggle('abierta');
+            // Cerrar todas las secciones
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('abierta'));
+            // Abrir la que se clickeó
+            div.classList.add('abierta');
         });
 
-        // Contenido
         const contenido = document.createElement('div');
         contenido.className = 'seccion-contenido';
 
@@ -64,7 +65,7 @@ function renderizarCV(data) {
                     itemDiv.innerHTML = `
                         <div class="titulo-item">${item.titulo}</div>
                         <div class="subtitulo-item">${item.institucion} · ${item.periodo}</div>
-                        ${item.nota ? `<p style="font-size:0.6rem;color:#b0b0c0;">${item.nota}</p>` : ''}
+                        ${item.nota ? `<p style="font-size:0.6rem;color:#a5d6a7;">${item.nota}</p>` : ''}
                     `;
                     contenido.appendChild(itemDiv);
                 });
@@ -114,7 +115,7 @@ function renderizarCV(data) {
         div.appendChild(contenido);
         main.appendChild(div);
 
-        // Abrir la primera sección por defecto (perfil)
+        // Abrir solo la primera sección (perfil) por defecto
         if (sec.id === 'perfil') {
             div.classList.add('abierta');
         }
@@ -127,7 +128,7 @@ function configurarBotones(personal) {
 
     if (personal.celular) {
         const numero = personal.celular.replace(/\s/g, '');
-        whatsapp.href = `https://wa.me/52${numero}`; // +52 para México
+        whatsapp.href = `https://wa.me/52${numero}`;
     } else {
         whatsapp.style.display = 'none';
     }
