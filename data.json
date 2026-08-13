@@ -88,7 +88,7 @@
     "programacion_bloques": "SICK, PILZ, Allen‑Bradley (PLC GUARD), IndraLogic (MTC).",
     "pascal": "PLCs Fanuc, Yokogawa (CNC), Indramat, Rexord.",
     "texto_estructurado": "PLCs IndraLogic (MTX), Robots ABB, KUKA, microcontroladores Atmel (Arduino), Microchip (Pic C compiler), ESP32 (Python, Arduino), STM32.",
-    "hmi": "Allen‑Bradley, Proface."
+    "hmi": "Allen‑Bradley, Proface.",
     "codigo": "Nodejs, Python, C++.",
 
   },
