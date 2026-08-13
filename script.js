@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== BIENVENIDA =====
     const welcome = document.getElementById('welcome');
     const welcomeName = document.getElementById('welcome-name');
     const app = document.getElementById('app');
-    
-    // Datos del nombre (se cargarán después, pero podemos usar el nombre fijo o obtenerlo del JSON)
-    // Primero cargamos el JSON para tener el nombre y luego animar
+
+    // Mostrar mensaje de carga mientras se obtienen los datos
+    const main = document.getElementById('main');
+    main.innerHTML = '<p style="text-align:center; color:#7aa9c9; padding:20px;">Cargando información...</p>';
+
     fetch('data.json')
         .then(res => {
             if (!res.ok) throw new Error('No se pudo cargar data.json');
@@ -13,34 +14,36 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             const nombreCompleto = data.personal.nombre;
-            // Animación de escritura en la bienvenida
+            // Animación de escritura
             escribirNombre(welcomeName, nombreCompleto, 120);
-            
-            // Una vez cargado, también rellenamos el resto de la interfaz
+
+            // Renderizar el CV completo
             renderizarCV(data);
             configurarBotones(data.personal);
-            
-            // Evento de clic para salir de bienvenida
+
+            // Evento de clic para salir de bienvenida (se ejecuta una sola vez)
             welcome.addEventListener('click', function salir() {
                 welcome.classList.add('hidden');
                 app.style.display = 'block';
-                // Opcional: remover el listener para evitar múltiples ejecuciones
                 welcome.removeEventListener('click', salir);
             });
         })
         .catch(err => {
             console.error(err);
-            // Si falla, mostramos un mensaje y permitimos continuar
+            // Si falla, mostramos un nombre genérico y permitimos continuar
             welcomeName.textContent = 'HUMBERTO GARCÍA VILLAGÓMEZ';
-            welcome.addEventListener('click', () => {
+            // Mostrar mensaje de error en el main
+            main.innerHTML = `<p style="color:#ff6b6b; text-align:center; padding:20px;">Error al cargar los datos. Intenta recargar.</p>`;
+            // Igualmente permitimos el clic para ver la interfaz (aunque sin datos)
+            welcome.addEventListener('click', function salir() {
                 welcome.classList.add('hidden');
                 app.style.display = 'block';
+                welcome.removeEventListener('click', salir);
             });
-            document.getElementById('main').innerHTML = `<p style="color:red;">Error al cargar los datos. Intenta recargar.</p>`;
         });
 });
 
-// Función para animar escritura letra por letra
+// Función de escritura (igual)
 function escribirNombre(elemento, texto, velocidad = 100) {
     let index = 0;
     elemento.textContent = '';
@@ -54,7 +57,7 @@ function escribirNombre(elemento, texto, velocidad = 100) {
     escribir();
 }
 
-// ===== FUNCIONES DE RENDERIZADO (igual que antes) =====
+// ===== FUNCIONES DE RENDERIZADO =====
 function renderizarCV(data) {
     document.getElementById('nombre').textContent = data.personal.nombre;
     const main = document.getElementById('main');
