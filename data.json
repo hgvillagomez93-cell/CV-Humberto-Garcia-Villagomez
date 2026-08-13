@@ -89,6 +89,8 @@
     "pascal": "PLCs Fanuc, Yokogawa (CNC), Indramat, Rexord.",
     "texto_estructurado": "PLCs IndraLogic (MTX), Robots ABB, KUKA, microcontroladores Atmel (Arduino), Microchip (Pic C compiler), ESP32 (Python, Arduino), STM32.",
     "hmi": "Allen‑Bradley, Proface."
+    "codigo": "Nodejs, Python, C++.",
+
   },
   "habilidades": [
     "Liderazgo y gestión de equipos",
@@ -104,7 +106,7 @@
     "Interpretación de planos y diagramas eléctricos",
     "Uso de CAD y AUTOCAD",
     "Uso de herramienta SAP",
-    "Uso de lenguajes de programacion Nodejs, Phyton, C++",
+    "Uso de lenguajes de programacion Nodejs, Python, C++",
     "Uso de programacion de controladores programables AB, Siemens, Mitsubishi, etc.",
     "Lectura y análisis de manuales técnicos"
   ],
