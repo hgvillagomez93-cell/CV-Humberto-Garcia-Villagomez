@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function renderizarCV(data) {
     document.getElementById('nombre').textContent = data.personal.nombre;
-
     const main = document.getElementById('main');
     main.innerHTML = '';
 
@@ -42,13 +41,8 @@ function renderizarCV(data) {
             <h2>${sec.titulo}</h2>
             <span class="icono">▼</span>
         `;
-
-        // 🔥 Lógica de acordeón: al hacer clic, cerrar todas y abrir solo esta
         header.addEventListener('click', () => {
-            // Cerrar todas las secciones
-            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('abierta'));
-            // Abrir la que se clickeó
-            div.classList.add('abierta');
+            div.classList.toggle('abierta');
         });
 
         const contenido = document.createElement('div');
@@ -65,7 +59,7 @@ function renderizarCV(data) {
                     itemDiv.innerHTML = `
                         <div class="titulo-item">${item.titulo}</div>
                         <div class="subtitulo-item">${item.institucion} · ${item.periodo}</div>
-                        ${item.nota ? `<p style="font-size:0.6rem;color:#a5d6a7;">${item.nota}</p>` : ''}
+                        ${item.nota ? `<p style="font-size:0.6rem;color:#8ab3d0;">${item.nota}</p>` : ''}
                     `;
                     contenido.appendChild(itemDiv);
                 });
@@ -115,7 +109,6 @@ function renderizarCV(data) {
         div.appendChild(contenido);
         main.appendChild(div);
 
-        // Abrir solo la primera sección (perfil) por defecto
         if (sec.id === 'perfil') {
             div.classList.add('abierta');
         }
