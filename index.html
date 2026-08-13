@@ -7,10 +7,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
+    <!-- PANTALLA DE BIENVENIDA -->
+    <div id="welcome">
+        <div class="welcome-content">
+            <img src="foto.jpg" alt="Humberto García" class="welcome-img">
+            <h1 id="welcome-name"></h1>
+            <p class="welcome-sub">Ingeniero en Automatización</p>
+            <p class="welcome-hint">— Haz clic para continuar —</p>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="app" style="display: none;">
         <header id="header">
             <div class="header-flex">
                 <img src="foto.jpg" alt="Foto de Humberto" class="foto-perfil" id="foto-perfil">
@@ -33,6 +44,7 @@
             <p class="footer-message">⚡ Amo la automatización, la programación y resolver problemas ⚡</p>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
