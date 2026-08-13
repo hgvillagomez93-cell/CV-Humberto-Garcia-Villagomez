@@ -112,17 +112,17 @@ function renderizarCV(data) {
                 contenido.appendChild(textoDiv);
                 
                 // Si es perfil, agregar botones de acción
-                //if (sec.id === 'perfil') {
-                //    const accionesDiv = document.createElement('div');
-                //    accionesDiv.className = 'acciones-perfil';
-                //    accionesDiv.innerHTML = `
-                //        <button class="btn-pequeno" onclick="window.print()">🖨️ Imprimir CV</button>
-                //        <button class="btn-pequeno" onclick="descargarCV()">📄 Descargar CV</button>
-                //        <a href="#footer" class="btn-pequeno" style="text-decoration:none;display:inline-block;">📧 Contactar</a>
-                //    `;
-                //    contenido.appendChild(accionesDiv);
-                //}
-                //break;
+                if (sec.id === 'perfil') {
+                    const accionesDiv = document.createElement('div');
+                    accionesDiv.className = 'acciones-perfil';
+                    accionesDiv.innerHTML = `
+                        <button class="btn-pequeno" onclick="window.print()">🖨️ Imprimir CV</button>
+                        <button class="btn-pequeno" onclick="descargarCV()">📄 Descargar CV</button>
+                        <a href="#footer" class="btn-pequeno" style="text-decoration:none;display:inline-block;">📧 Contactar</a>
+                    `;
+                    contenido.appendChild(accionesDiv);
+                }
+                break;
                 
             case 'lista':
                 sec.items.forEach(item => {
