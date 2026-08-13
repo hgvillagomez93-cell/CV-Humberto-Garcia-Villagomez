@@ -423,4 +423,7 @@ footer {
         transform: none !important;
         box-shadow: 3px 3px 0 #060a12 !important;
     }
+    html {
+      scroll-behavior: smooth;
+    }
 }
