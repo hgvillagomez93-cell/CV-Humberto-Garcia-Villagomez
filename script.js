@@ -1,19 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ===== BIENVENIDA =====
+    const welcome = document.getElementById('welcome');
+    const welcomeName = document.getElementById('welcome-name');
+    const app = document.getElementById('app');
+    
+    // Datos del nombre (se cargarán después, pero podemos usar el nombre fijo o obtenerlo del JSON)
+    // Primero cargamos el JSON para tener el nombre y luego animar
     fetch('data.json')
         .then(res => {
             if (!res.ok) throw new Error('No se pudo cargar data.json');
             return res.json();
         })
         .then(data => {
+            const nombreCompleto = data.personal.nombre;
+            // Animación de escritura en la bienvenida
+            escribirNombre(welcomeName, nombreCompleto, 120);
+            
+            // Una vez cargado, también rellenamos el resto de la interfaz
             renderizarCV(data);
             configurarBotones(data.personal);
+            
+            // Evento de clic para salir de bienvenida
+            welcome.addEventListener('click', function salir() {
+                welcome.classList.add('hidden');
+                app.style.display = 'block';
+                // Opcional: remover el listener para evitar múltiples ejecuciones
+                welcome.removeEventListener('click', salir);
+            });
         })
         .catch(err => {
             console.error(err);
+            // Si falla, mostramos un mensaje y permitimos continuar
+            welcomeName.textContent = 'HUMBERTO GARCÍA VILLAGÓMEZ';
+            welcome.addEventListener('click', () => {
+                welcome.classList.add('hidden');
+                app.style.display = 'block';
+            });
             document.getElementById('main').innerHTML = `<p style="color:red;">Error al cargar los datos. Intenta recargar.</p>`;
         });
 });
 
+// Función para animar escritura letra por letra
+function escribirNombre(elemento, texto, velocidad = 100) {
+    let index = 0;
+    elemento.textContent = '';
+    function escribir() {
+        if (index < texto.length) {
+            elemento.textContent += texto.charAt(index);
+            index++;
+            setTimeout(escribir, velocidad);
+        }
+    }
+    escribir();
+}
+
+// ===== FUNCIONES DE RENDERIZADO (igual que antes) =====
 function renderizarCV(data) {
     document.getElementById('nombre').textContent = data.personal.nombre;
     const main = document.getElementById('main');
@@ -109,6 +150,7 @@ function renderizarCV(data) {
         div.appendChild(contenido);
         main.appendChild(div);
 
+        // Abrir perfil por defecto
         if (sec.id === 'perfil') {
             div.classList.add('abierta');
         }
