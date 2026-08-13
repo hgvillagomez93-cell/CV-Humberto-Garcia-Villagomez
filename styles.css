@@ -9,16 +9,87 @@ body {
     background: #0a0e1a;
     background-image: radial-gradient(circle at 20% 30%, #141c2b, #060a12);
     font-family: 'Press Start 2P', monospace;
-    color: #b0c4de; /* azul claro para texto general */
+    color: #b0c4de;
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
+/* ===== PANTALLA DE BIENVENIDA ===== */
+#welcome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0e1a;
+    background-image: radial-gradient(circle at 20% 30%, #141c2b, #060a12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#welcome.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.welcome-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.welcome-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 6px solid #1a3a6b;
+    object-fit: cover;
+    image-rendering: pixelated;
+    margin-bottom: 30px;
+    box-shadow: 0 0 40px rgba(26, 58, 107, 0.6);
+}
+
+#welcome-name {
+    font-size: 2.8rem;
+    color: #4a8db7;
+    text-shadow: 4px 4px 0 #1a3a6b, 6px 6px 0 #000;
+    letter-spacing: 2px;
+    min-height: 5rem;
+    margin-bottom: 10px;
+}
+
+.welcome-sub {
+    font-size: 1rem;
+    color: #7aa9c9;
+    text-shadow: 2px 2px 0 #0a1a2a;
+    margin-top: 10px;
+}
+
+.welcome-hint {
+    font-size: 0.7rem;
+    color: #4a6a8a;
+    margin-top: 40px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
 #app {
     max-width: 1200px;
     width: 100%;
+    display: block;
 }
 
 /* Encabezado con imagen */
@@ -61,12 +132,12 @@ header .subtitle {
     text-shadow: 2px 2px 0 #0a1a2a;
 }
 
-/* MAIN - Grid con alineación superior para evitar estiramientos */
+/* MAIN - Grid con alineación superior */
 #main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
-    align-items: start; /* <--- CLAVE: evita que las celdas se estiren */
+    align-items: start;
 }
 
 /* Secciones */
@@ -118,11 +189,62 @@ header .subtitle {
     padding: 10px 14px 14px;
     display: none;
     overflow: hidden;
-    flex: 0 1 auto; /* que no crezca más de su contenido */
+    flex: 0 1 auto;
 }
 
 .seccion.abierta .seccion-contenido {
     display: block;
+}
+
+/* ===== ESTILOS MEJORADOS PARA PERFIL ===== */
+.perfil-texto {
+    font-size: 0.6rem;
+    line-height: 1.8;
+    color: #b0c4de;
+    padding: 4px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.perfil-texto strong {
+    color: #7aa9c9;
+}
+
+/* ===== ACCIONES DEL PERFIL ===== */
+.acciones-perfil {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 2px solid #1a3a6b;
+}
+
+.btn-pequeno {
+    padding: 6px 12px;
+    font-size: 0.5rem;
+    font-family: 'Press Start 2P', monospace;
+    background: #0f1f3a;
+    border: 3px solid #1a3a6b;
+    color: #b0c4de;
+    cursor: pointer;
+    transition: all 0.05s linear;
+    box-shadow: 3px 3px 0 #060a12;
+}
+
+.btn-pequeno:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #060a12;
+    background: #142a4a;
+}
+
+/* ===== ESTILOS PARA OBJETIVO ===== */
+.objetivo-texto {
+    font-size: 0.6rem;
+    line-height: 1.8;
+    color: #b0c4de;
+    padding: 4px 0;
+    white-space: pre-wrap;
 }
 
 /* Listas y elementos */
@@ -167,15 +289,6 @@ header .subtitle {
     line-height: 1.6;
 }
 
-/* Perfil y objetivo */
-.perfil-texto, .objetivo-texto {
-    font-size: 0.6rem;
-    line-height: 1.8;
-    color: #b0c4de;
-    padding: 4px 0;
-}
-
-/* Habilidades, conocimientos técnicos, etc */
 .lista-simple {
     display: flex;
     flex-wrap: wrap;
@@ -193,7 +306,6 @@ header .subtitle {
     letter-spacing: 0.3px;
 }
 
-/* Información adicional en pares clave-valor */
 .info-adicional p {
     font-size: 0.55rem;
     margin: 5px 0;
@@ -286,5 +398,22 @@ footer {
     .foto-perfil {
         width: 60px;
         height: 60px;
+    }
+
+    .welcome-img {
+        width: 140px;
+        height: 140px;
+    }
+    #welcome-name {
+        font-size: 2rem;
+        min-height: 4rem;
+    }
+    .welcome-sub {
+        font-size: 0.8rem;
+    }
+    
+    .btn-pequeno {
+        font-size: 0.4rem;
+        padding: 4px 8px;
     }
 }
