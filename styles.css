@@ -416,4 +416,10 @@ footer {
         font-size: 0.4rem;
         padding: 4px 8px;
     }
+    .btn-pequeno:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: 3px 3px 0 #060a12 !important;
+    }
 }
