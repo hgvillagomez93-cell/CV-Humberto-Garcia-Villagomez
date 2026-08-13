@@ -62,7 +62,7 @@ body {
     color: #4a8db7;
     text-shadow: 4px 4px 0 #1a3a6b, 6px 6px 0 #000;
     letter-spacing: 2px;
-    min-height: 5rem; /* para evitar saltos al escribir */
+    min-height: 5rem;
     margin-bottom: 10px;
 }
 
@@ -89,7 +89,7 @@ body {
 #app {
     max-width: 1200px;
     width: 100%;
-    display: block; /* se oculta con style="display:none" en HTML, luego JS lo muestra */
+    display: block;
 }
 
 /* Encabezado con imagen */
@@ -196,6 +196,57 @@ header .subtitle {
     display: block;
 }
 
+/* ===== ESTILOS MEJORADOS PARA PERFIL ===== */
+.perfil-texto {
+    font-size: 0.6rem;
+    line-height: 1.8;
+    color: #b0c4de;
+    padding: 4px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.perfil-texto strong {
+    color: #7aa9c9;
+}
+
+/* ===== ACCIONES DEL PERFIL ===== */
+.acciones-perfil {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 2px solid #1a3a6b;
+}
+
+.btn-pequeno {
+    padding: 6px 12px;
+    font-size: 0.5rem;
+    font-family: 'Press Start 2P', monospace;
+    background: #0f1f3a;
+    border: 3px solid #1a3a6b;
+    color: #b0c4de;
+    cursor: pointer;
+    transition: all 0.05s linear;
+    box-shadow: 3px 3px 0 #060a12;
+}
+
+.btn-pequeno:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #060a12;
+    background: #142a4a;
+}
+
+/* ===== ESTILOS PARA OBJETIVO ===== */
+.objetivo-texto {
+    font-size: 0.6rem;
+    line-height: 1.8;
+    color: #b0c4de;
+    padding: 4px 0;
+    white-space: pre-wrap;
+}
+
 /* Listas y elementos */
 .lista-item {
     margin-top: 12px;
@@ -236,13 +287,6 @@ header .subtitle {
     padding-left: 10px;
     margin-bottom: 4px;
     line-height: 1.6;
-}
-
-.perfil-texto, .objetivo-texto {
-    font-size: 0.6rem;
-    line-height: 1.8;
-    color: #b0c4de;
-    padding: 4px 0;
 }
 
 .lista-simple {
@@ -366,5 +410,10 @@ footer {
     }
     .welcome-sub {
         font-size: 0.8rem;
+    }
+    
+    .btn-pequeno {
+        font-size: 0.4rem;
+        padding: 4px 8px;
     }
 }
