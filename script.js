@@ -90,13 +90,10 @@ function renderizarCV(data) {
 
         switch (sec.tipo) {
             case 'texto':
-                // Mejora: crear el elemento con la clase correcta
                 const textoDiv = document.createElement('div');
                 
-                // Si es el perfil, usar clase específica
                 if (sec.id === 'perfil') {
                     textoDiv.className = 'perfil-texto';
-                    // Formatear el texto para respetar saltos de línea
                     const textoFormateado = sec.contenido.replace(/\n/g, '<br>');
                     textoDiv.innerHTML = `<strong>📌 Resumen</strong><br><br>${textoFormateado}`;
                 } else if (sec.id === 'objetivo') {
@@ -117,7 +114,7 @@ function renderizarCV(data) {
                     accionesDiv.className = 'acciones-perfil';
                     accionesDiv.innerHTML = `
                         <button class="btn-pequeno" onclick="window.print()">🖨️ Imprimir CV</button>
-                        <button class="btn-pequeno" onclick="descargarCV()">📄 Descargar CV</button>
+                        <button class="btn-pequeno" onclick="generarPDF()">📄 Descargar PDF</button>
                         <a href="#footer" class="btn-pequeno" style="text-decoration:none;display:inline-block;">📧 Contactar</a>
                     `;
                     contenido.appendChild(accionesDiv);
@@ -210,9 +207,153 @@ function configurarBotones(personal) {
     }
 }
 
-// ===== FUNCIÓN PARA DESCARGAR CV (OPCIONAL) =====
-function descargarCV() {
-    // Esta función podría generar un PDF o descargar el contenido
-    alert('Función de descarga - Puedes implementar la generación de PDF aquí');
-    // Ejemplo: window.location.href = 'ruta/al/cv.pdf';
+// ===== FUNCIÓN PARA GENERAR PDF CON html2pdf.js =====
+function generarPDF() {
+    // Mostrar indicador de carga
+    const btnPDF = document.querySelector('.btn-pequeno[onclick="generarPDF()"]');
+    const textoOriginal = btnPDF ? btnPDF.textContent : '📄 Descargar PDF';
+    if (btnPDF) {
+        btnPDF.textContent = '⏳ Generando...';
+        btnPDF.disabled = true;
+    }
+
+    // Obtener el elemento a convertir
+    const app = document.getElementById('app');
+    
+    // Configuración del PDF
+    const opt = {
+        margin: [10, 10, 10, 10], // márgenes en mm [superior, izquierda, inferior, derecha]
+        filename: 'CV_Humberto_Garcia_Villagomez.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+            scale: 2, // Mayor calidad
+            useCORS: true,
+            letterRendering: true,
+            backgroundColor: '#0a0e1a', // Fondo oscuro
+            logging: false,
+            windowWidth: 1200, // Ancho fijo para consistencia
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        },
+        pagebreak: {
+            mode: ['avoid-all', 'css', 'legacy']
+        }
+    };
+
+    // Verificar si html2pdf está disponible
+    if (typeof html2pdf === 'undefined') {
+        console.error('La librería html2pdf no está cargada. Asegúrate de incluir el script en tu HTML.');
+        alert('Error: La librería para generar PDF no está cargada. Por favor, recarga la página.');
+        if (btnPDF) {
+            btnPDF.textContent = textoOriginal;
+            btnPDF.disabled = false;
+        }
+        return;
+    }
+
+    // Generar el PDF
+    html2pdf()
+        .set(opt)
+        .from(app)
+        .save()
+        .then(() => {
+            // Restaurar botón
+            if (btnPDF) {
+                btnPDF.textContent = textoOriginal;
+                btnPDF.disabled = false;
+            }
+        })
+        .catch((error) => {
+            console.error('Error al generar PDF:', error);
+            alert('Hubo un error al generar el PDF. Intenta de nuevo.');
+            if (btnPDF) {
+                btnPDF.textContent = textoOriginal;
+                btnPDF.disabled = false;
+            }
+        });
 }
+
+// ===== FUNCIÓN ALTERNATIVA PARA GENERAR PDF CON jsPDF (SIN html2canvas) =====
+// Esta es una versión más ligera que genera un PDF desde cero con texto estructurado
+function generarPDFSimple() {
+    // Verificar si jsPDF está disponible
+    if (typeof jsPDF === 'undefined') {
+        alert('La librería jsPDF no está cargada. Usando el método con html2canvas...');
+        generarPDF();
+        return;
+    }
+
+    try {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        
+        // Obtener datos del perfil
+        const nombre = document.getElementById('nombre')?.textContent || 'Humberto García';
+        const perfil = document.querySelector('#sec-perfil .perfil-texto')?.textContent || '';
+        
+        // Configurar fuente (usar una fuente estándar)
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(18);
+        doc.text(nombre, 20, 20);
+        
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(11);
+        doc.text('Ingeniero en Automatización', 20, 30);
+        
+        // Línea separadora
+        doc.setDrawColor(50, 50, 80);
+        doc.line(20, 35, 190, 35);
+        
+        // Perfil
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(14);
+        doc.text('Perfil Profesional', 20, 45);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        
+        // Dividir texto en líneas para que quepa
+        const lineasPerfil = doc.splitTextToSize(perfil || 'No disponible', 170);
+        doc.text(lineasPerfil, 20, 55);
+        
+        // Agregar más secciones...
+        let y = 55 + (lineasPerfil.length * 5);
+        
+        // Obtener educación
+        const educacionItems = document.querySelectorAll('#sec-educacion .lista-item');
+        if (educacionItems.length > 0) {
+            y += 10;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.text('Educación', 20, y);
+            y += 8;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            
+            educacionItems.forEach(item => {
+                const titulo = item.querySelector('.titulo-item')?.textContent || '';
+                const subtitulo = item.querySelector('.subtitulo-item')?.textContent || '';
+                doc.text(titulo, 22, y);
+                y += 5;
+                doc.setFontSize(9);
+                doc.text(subtitulo, 24, y);
+                y += 6;
+                doc.setFontSize(10);
+            });
+        }
+        
+        // Guardar PDF
+        doc.save('CV_Humberto_Garcia_Simple.pdf');
+        
+    } catch (error) {
+        console.error('Error al generar PDF simple:', error);
+        alert('Error al generar PDF. Intentando con el método estándar...');
+        generarPDF();
+    }
+}
+
+// Exponer funciones globalmente para que los botones puedan llamarlas
+window.generarPDF = generarPDF;
+window.generarPDFSimple = generarPDFSimple;
