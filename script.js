@@ -21,9 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Evento de clic para salir de bienvenida
             welcome.addEventListener('click', function salir() {
+                // Reproducir audio al interactuar
+                const audio = document.getElementById('bg-audio');
+                if (audio) {
+                    audio.play().catch(err => console.log('Audio no se pudo reproducir'));
+                }
+                
                 welcome.classList.add('hidden');
                 app.style.display = 'block';
-                // Opcional: remover el listener para evitar múltiples ejecuciones
                 welcome.removeEventListener('click', salir);
             });
         })
