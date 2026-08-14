@@ -424,6 +424,9 @@ footer {
         box-shadow: 3px 3px 0 #060a12 !important;
     }
     html {
-      scroll-behavior: smooth;
+        scroll-behavior: smooth;
+    }
+    #bg-audio {
+        display: none; /* Oculta el reproductor visualmente */
     }
 }
